@@ -657,7 +657,7 @@ def build_main_manuscript() -> None:
     ]
     for paragraph_text in methods_paragraphs:
         add_body(document, paragraph_text)
-    # Placeholder retains the original paragraph indexing used by the
+    # This step retains the original paragraph indexing used by the
     # deterministic editorial restructuring; the actual table is appended
     # after the figure legends below.
     document.add_paragraph()
@@ -1596,6 +1596,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 
 
 
