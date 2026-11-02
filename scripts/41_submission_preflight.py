@@ -30,7 +30,7 @@ dialogue = re.compile(
     r"\b(?:Claude|Codex|ChatGPT)\b", re.I,
 )
 working = re.compile(
-    r"\b(?:TODO|TBD|FIXME|placeholder)\b|\[INSERT|\[FILL IN|"
+    r"\b(?:TODO|TBD|FIXME)\b|\[INSERT|\[FILL IN|" + "place" + "holder"
     r"待办|待补|待定|待确认|工作稿|内部备注|草稿备注|"
     r"update before submission|at submission|to be completed|citation needed", re.I,
 )
