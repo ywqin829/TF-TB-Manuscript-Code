@@ -26,12 +26,10 @@ expected = {
 }
 dialogue_terms = ["system" + " prompt", r"\b" + "user" + r"\s*:", r"\b" + "assistant" + r"\s*:", "conversation" + " log", "as an " + "AI", "以下是修改后的", "我来为你", "请将以下内容", "希望这对你有帮助", r"\b(?:" + "|".join(["Claude", "Codex", "ChatGPT"]) + r")\b"]
 dialogue = re.compile("|".join(dialogue_terms), re.I)
-)
 working = re.compile(
     r"\b(?:" + "|".join(["TO" + "DO", "T" + "BD", "FIX" + "ME"]) + r")\b|\[INSERT|\[FILL IN|" + "place" + "holder"
     r"待办|待补|待定|待确认|工作稿|内部备注|草稿备注|"
     r"update before submission|at submission|to be completed|citation needed", re.I,
-)
 
 
 def docx_lines(path):
@@ -83,7 +81,6 @@ report.write_text(
     "Checks: editorial text; unfinished notes or markers; missing, stale or unexpected upload files.\n"
     + ("\n".join(problems) + "\n" if problems else "No hits.\n"),
     encoding="utf-8",
-)
 print(report.read_text(encoding="utf-8"))
 raise SystemExit(0 if status == "PASS" else 1)
 
