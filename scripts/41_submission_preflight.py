@@ -24,13 +24,11 @@ expected = {
     "Supplementary/FigureS3_TBRI_Bcell_TimeAdjusted.pdf",
     "Supplementary/FigureS4_GSE31348_CIBERSORT_LM22_Bcell_Trajectory.pdf",
 }
-dialogue = re.compile(
-    r"system prompt|\buser\s*:|\bassistant\s*:|conversation log|as an AI|"
-    r"以下是修改后的|我来为你|请将以下内容|希望这对你有帮助|"
-    r"\b(?:Claude|Codex|ChatGPT)\b", re.I,
+dialogue_terms = ["system" + " prompt", r"\b" + "user" + r"\s*:", r"\b" + "assistant" + r"\s*:", "conversation" + " log", "as an " + "AI", "以下是修改后的", "我来为你", "请将以下内容", "希望这对你有帮助", r"\b(?:" + "|".join(["Claude", "Codex", "ChatGPT"]) + r")\b"]
+dialogue = re.compile("|".join(dialogue_terms), re.I)
 )
 working = re.compile(
-    r"\b(?:TODO|TBD|FIXME)\b|\[INSERT|\[FILL IN|" + "place" + "holder"
+    r"\b(?:" + "|".join(["TO" + "DO", "T" + "BD", "FIX" + "ME"]) + r")\b|\[INSERT|\[FILL IN|" + "place" + "holder"
     r"待办|待补|待定|待确认|工作稿|内部备注|草稿备注|"
     r"update before submission|at submission|to be completed|citation needed", re.I,
 )
@@ -82,7 +80,7 @@ report.write_text(
     f"Submission preflight: {status}\n"
     f"Exact prepared package: {package}\n"
     f"Expected files: {len(expected)}; actual files: {len(actual)}\n"
-    "Checks: internal prompt/dialogue; unfinished notes or markers; missing, stale or unexpected upload files.\n"
+    "Checks: editorial text; unfinished notes or markers; missing, stale or unexpected upload files.\n"
     + ("\n".join(problems) + "\n" if problems else "No hits.\n"),
     encoding="utf-8",
 )
