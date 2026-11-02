@@ -36,7 +36,7 @@ dialogue_terms = [
 ]
 unfinished_terms = [
     r"\\b(?:" + "|".join(["TO" + "DO", "T" + "BD", "FIX" + "ME"]) + r")\\b",
-    "\\\\" + "[" + "INSERT", "\\\\" + "[" + "FILL IN", "place" + "holder",
+    r"\[" + "INSERT", r"\[" + "FILL IN", "place" + "holder",
     "待办", "待补", "待定", "待确认", "工作稿", "内部备注", "草稿备注",
     "update before submission", "at submission", "to be completed", "citation needed",
 ]
