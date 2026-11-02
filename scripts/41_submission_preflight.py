@@ -82,10 +82,11 @@ report.write_text(
     f"Submission preflight: {status}\n"
     f"Exact prepared package: {package}\n"
     f"Expected files: {len(expected)}; actual files: {len(actual)}\n"
-    "Checks: internal prompt/dialogue; unfinished notes/placeholders; missing, stale or unexpected upload files.\n"
+    "Checks: internal prompt/dialogue; unfinished notes or markers; missing, stale or unexpected upload files.\n"
     + ("\n".join(problems) + "\n" if problems else "No hits.\n"),
     encoding="utf-8",
 )
 print(report.read_text(encoding="utf-8"))
 raise SystemExit(0 if status == "PASS" else 1)
+
 
