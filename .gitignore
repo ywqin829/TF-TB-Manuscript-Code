@@ -1,26 +1,12 @@
-# R
-*.RData
-*.Rds
+__pycache__/
+*.pyc
+*.pyo
+.Rhistory
+.RData
 *.rds
-*.Rhistory
-
-# Data files
-*.csv
-*.tsv
-*.txt.gz
-*.mtx.gz
-*.CEL.gz
-*.CEL
-
-# External databases
-nichenet_db/
-
-# Output (generated figures)
-output/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
-.Rproj.user
+*.RDS
+results/
+figures/
+tables/
+logs/
+submission_package*/

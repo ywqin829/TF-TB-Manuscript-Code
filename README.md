@@ -1,61 +1,44 @@
-# Decoding the Ignition-Effector Cascade: TBX21-PAX5 Axis in TB Resolution
+# Composition-aware tuberculosis treatment transcriptome reanalysis
 
-**Manuscript**: Respiratory Medicine (2025)
+This repository contains the analysis and figure-generation code for the manuscript **Immune cell composition shapes the interpretation of blood transcriptional recovery during tuberculosis treatment**.
 
-## Study Overview
+## Scope
 
-This repository contains the complete analysis code for the manuscript describing the **Ignition-Effector Cascade** — a mechanism where T/NK cells (TBX21/NFATC2) activate first and drive B-cell (PAX5/EBF1) restoration during successful TB treatment.
+The study is a secondary analysis of public transcriptomic datasets. No new samples or raw sequencing data were generated.
 
-## Figure Organization
+- Discovery and longitudinal recovery: **GSE40553**
+- Independent directional validation: **GSE31348**
+- Longitudinal outcome and TBRI/composition analyses: **GSE89403**
+- Additional single-cell context: **GSE192483**, **GSE218065**, **GSE326212**
+- Acute stimulation supplementary context: **EGAS00001005376**
 
-| Script | Figure | Content | Dataset |
-|--------|--------|---------|---------|
-| `01_Figure2_GSE40553.R` | Fig 2A-B | Volcano plots (Disease vs Recovery) | GSE40553 |
-| | Fig 2C | Venn diagrams (Transcriptional Reversal) | GSE40553 |
-| | Fig 2D | Mfuzz temporal clustering | GSE40553 |
-| | Fig 2E | GO enrichment (Reactome/GO) | GSE40553 |
-| | Fig 2F | VIPER TF activity heatmap | GSE40553 |
-| | Fig 2G | Fisher TF enrichment bubble plot | GSE40553 |
-| `02_Figure3_SingleCell.R` | Fig 3A-C | PBMC scRNA: TF DotPlot/VlnPlot/FeaturePlot | GSE218065 |
-| | Fig 3D-F | Lung scRNA: TF pseudobulk analysis | GSE192483 |
-| | Fig 3G-I | MTB PBMC: temporal dynamics + CellChat + Monocle3 | EGAS00001005376 |
-| | Fig 3J | Sankey network: Cell → TF → Function | GSE40553 |
-| | Fig 3K | 9-gene boxplots across timepoints | GSE40553 |
-| `03_Figure4_CIBERSORT_NicheNet.R` | Fig 4A | CIBERSORT immune cell dynamics | GSE31348 |
-| | Fig 4B | PAX5/TBX21/NFATC2 longitudinal expression | GSE31348 |
-| | Fig 4C | NicheNet ligand-receptor prediction | GSE31348 |
-| | Fig 4D | scRNA pseudobulk validation (lung B/Plasma) | GSE192483 |
-| `04_Figure5_GSE89403.R` | Fig 5A-F | PAX5/TBX21/NFATC2 activity + target score validation | GSE89403 |
-| `05_Figure6_HealingScore.R` | Fig 6A | LASSO coefficient profile | GSE40553 |
-| | Fig 6B | LASSO cross-validation | GSE40553 |
-| | Fig 6C | Lollipop plot (19 LASSO genes) | GSE40553 |
-| | Fig 6D | Diagnostic ROC (GSE31348, AUC=0.992) | GSE31348 |
-| | Fig 6E-G | Healing Score: Dynamic ROC, Calibration, DCA | GSE89403 |
+## Repository layout
 
-## Data Dependencies
+- scripts/: preprocessing, statistical analyses, sensitivity analyses, and manuscript figure sources
+- scripts/figure_sources/: R source files for the integrated main and supplementary figures
+- results/, figures/, and tables/ are generated locally and are not required to be committed to this code repository
+- No participant-level data are distributed here; obtain source data from the accession records above
 
-| Dataset | Accession | Type | Download |
-|---------|-----------|------|----------|
-| Discovery cohort | GSE40553 | Illumina HumanHT-12 v4 array | GEO: GSE40553 |
-| Validation cohort 1 | GSE31348 | Affymetrix HG-U133 Plus 2.0 | GEO: GSE31348 |
-| Outcome cohort | GSE89403 | RNA-seq log2 expression | GEO: GSE89403 |
-| Additional validation | GSE19435 | Illumina array | GEO: GSE19435 |
-| PBMC scRNA-seq | GSE218065 | 10x Genomics | GEO: GSE218065 |
-| Lung scRNA-seq | GSE192483 | 10x Genomics | GEO: GSE192483 |
-| MTB timecourse scRNA | EGAS00001005376 | 10x Genomics | EGA |
+## Reproducibility
 
-### NicheNet Dependency
-Fig 4C requires external NicheNet database files:
-- `ligand_target_matrix.rds`
-- `lr_network.rds`
-- `weighted_networks.rds`
+The project-specific runner is scripts/run_all.ps1. Before running it, set TF_TB_PROJECT_ROOT and the input environment variables consumed by scripts/00_config.R:
 
-Download from: https://github.com/saeyslab/nichenetr
+- TF_TB_GSE40553_RDS
+- TF_TB_GSE31348_RDS
+- TF_TB_GSE89403_RDS
 
-## Output Directory
+Additional raw and single-cell inputs are documented in the corresponding scripts. Some analyses require external reference resources such as LM22/CIBERSORT or NicheNet databases; those are downloaded or configured separately and are not redistributed here.
 
-All figures are saved to `output/` as PDF files.
+The analysis uses R and Python. Exact package versions and run logs should be archived with the manuscript submission or a DOI-backed data record.
 
-## Session Info
+## Data availability
 
-Analysis performed with R 4.x, Seurat v5, and Bioconductor packages.
+All source datasets are publicly available through NCBI GEO or EGA under the accession numbers listed above. Derived result tables and the submission-specific supplementary archive are distributed with the manuscript package. A DOI-backed archive should be added before publication if required by the target journal.
+
+## Code availability
+
+Public repository: https://github.com/ywqin829/TF-TB-Manuscript-Code
+
+## Legacy files
+
+The original top-level scripts are retained for provenance. The supported reproducibility workflow is the code under `scripts/`; legacy scripts should not be used for the current manuscript without review.
