@@ -29,8 +29,8 @@ expected = {
 }
 
 dialogue_terms = [
-    "system" + " prompt", r"\\b" + "user" + r"\\s*:",
-    r"\\b" + "assistant" + r"\\s*:", "conversation" + " log",
+    "system" + " prompt", r"\b" + "user" + r"\\s*:",
+    r"\b" + "assistant" + r"\\s*:", "conversation" + " log",
     "as an " + "AI", "以下是修改后的", "我来为你", "请将以下内容",
     r"\\b(?:" + "|".join(["Claude", "Codex", "ChatGPT"]) + r")\\b",
 ]
