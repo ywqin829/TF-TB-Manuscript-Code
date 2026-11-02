@@ -16,7 +16,7 @@ The study is a secondary analysis of public transcriptomic datasets. No new samp
 
 - scripts/: preprocessing, statistical analyses, sensitivity analyses, and manuscript figure sources
 - scripts/figure_sources/: R source files for the integrated main and supplementary figures
-- results/, figures/, and tables/ are generated locally and are not required to be committed to this code repository
+- results/, figures/, and tables/ are generated locally and are not committed to this code repository
 - No participant-level data are distributed here; obtain source data from the accession records above
 
 ## Reproducibility
@@ -33,7 +33,7 @@ The analysis uses R and Python. Exact package versions and run logs should be ar
 
 ## Data availability
 
-All source datasets are publicly available through NCBI GEO or EGA under the accession numbers listed above. Derived result tables and the submission-specific supplementary archive are distributed with the manuscript package. A DOI-backed archive should be added before publication if required by the target journal.
+All source datasets are publicly available through NCBI GEO or EGA under the accession numbers listed above. Derived result tables are generated locally from the supplied scripts and are provided in the manuscript submission archive; source data remain available from the accession records above.
 
 ## Code availability
 
@@ -42,3 +42,5 @@ Public repository: https://github.com/ywqin829/TF-TB-Manuscript-Code
 ## Legacy files
 
 The original top-level scripts are retained for provenance. The supported reproducibility workflow is the code under `scripts/`; legacy scripts should not be used for the current manuscript without review.
+
+
